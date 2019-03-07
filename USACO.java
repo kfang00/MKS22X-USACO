@@ -18,19 +18,10 @@ public class USACO {
       }
     }
     int[][] moves = new int[il[3]][3];
-    for (int d = 0; d < i1[0]; d++) {
-      for (int e = 0; e < i1[1]; e++) {
+    for (int d = 0; d < i1[3]; d++) {
+      for (int e = 0; e < 3; e++) {
         pasture[d][e] = Integer.parseInt(in.next());
       }
-    }
-
-      }
-      else {
-
-      }
-		  row += 1;
-		  col = h.length();
-		  st += h;
     }
   }
 
