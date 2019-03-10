@@ -56,8 +56,24 @@ public class USACO {
     return (sum * 72 * 72);
   }
 
-  public static int silver(String filename) {
-    return 0;
+  public static int silver(String filename) throws FileNotFoundException{
+    int[][] pasture;
+    int[] se = new int[4]
+    int[] i1 = new int[3];
+    File ff = new File(filename);
+    Scanner in = new Scanner(ff);
+    for (int a = 0; a < 2; a++) {
+      i1[a] = Integer.parseInt(in.next());
+    }
+    pasture = new int[i1[0]][i1[1]];
+    for (int b = 0; b < i1[0]; b++) {
+      for (int c = 0; c < i1[1]; c++) {
+        pasture[b][c] = Integer.parseInt(in.next());
+      }
+    }
+    for (int d = 0; d < 3; d++) {
+      se[d] = Integer.parseInt(in.next());
+    }
   }
 
   public static String toString(int[][] arr) {
