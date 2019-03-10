@@ -57,23 +57,25 @@ public class USACO {
   }
 
   public static int silver(String filename) throws FileNotFoundException{
-    int[][] pasture;
-    int[] se = new int[4]
+    String[][] pasture;
+    int[] se = new int[4];
     int[] i1 = new int[3];
     File ff = new File(filename);
     Scanner in = new Scanner(ff);
     for (int a = 0; a < 2; a++) {
       i1[a] = Integer.parseInt(in.next());
     }
-    pasture = new int[i1[0]][i1[1]];
+    pasture = new String[i1[0]][i1[1]];
     for (int b = 0; b < i1[0]; b++) {
       for (int c = 0; c < i1[1]; c++) {
-        pasture[b][c] = Integer.parseInt(in.next());
+        pasture[b][c] = in.next();
       }
     }
     for (int d = 0; d < 3; d++) {
       se[d] = Integer.parseInt(in.next());
     }
+    System.out.println(toStringS(pasture));
+    return 0;
   }
 
   public static String toString(int[][] arr) {
@@ -81,6 +83,17 @@ public class USACO {
     for (int d = 0; d < arr.length; d++) {
       for (int e = 0; e < arr[0].length; e++) {
 	s += arr[d][e] + " ";
+      }
+      s += "\n";
+    }
+    return s;
+  }
+
+  public static String toStringS(String[][] arr) {
+    String s = "";
+    for (int d = 0; d < arr.length; d++) {
+      for (int e = 0; e < arr[0].length; e++) {
+	s += arr[d][e];
       }
       s += "\n";
     }
