@@ -60,22 +60,52 @@ public class USACO {
     String[][] pasture;
     int[] se = new int[4];
     int[] i1 = new int[3];
+    String s = "";
     File ff = new File(filename);
     Scanner in = new Scanner(ff);
-    for (int a = 0; a < 2; a++) {
+    for (int a = 0; a < 3; a++) {
       i1[a] = Integer.parseInt(in.next());
     }
     pasture = new String[i1[0]][i1[1]];
     for (int b = 0; b < i1[0]; b++) {
-      for (int c = 0; c < i1[1]; c++) {
-        pasture[b][c] = in.next();
+      s = in.next();
+      for (int c = 0; c < s.length(); c++) {
+        pasture[b][c] = s.charAt(c) + "";
       }
     }
     for (int d = 0; d < 3; d++) {
       se[d] = Integer.parseInt(in.next());
     }
+    for (int e = 0; e < pasture.length; e++) {
+      for (int f = 0; f < pasture[0].length; f++) {
+        if (pasture[e][f] == ".") {
+	  pasture[e][f] = 0;
+        }
+	else {
+	  pasture[e][f] = -1;
+	}
+      }
+    }
+    for (int g = 0; g < i1[2] + 1; g++) {
+      updatePasture(pasture, g, se[0] - 1, se[1] - 1);
+    }
     System.out.println(toStringS(pasture));
     return 0;
+  }
+
+  public static void updatePasture(String[][] arr, int time, int startR, int startC) {
+    int[][] moves = {{0, -1},{0, 1},{1, 0},{-1, 0}};
+    if (time == 0) {
+      
+    }
+
+  }
+
+  public static boolean isValid(String[][] arr, int r, int c) {
+    if ((arr[r][c] == -1) || (r >= arr.length) || (c >= arr[0].length) || (r < 0) || (c < 0)) {
+      return false;
+    }
+    return true;
   }
 
   public static String toString(int[][] arr) {
