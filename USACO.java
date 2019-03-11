@@ -73,35 +73,47 @@ public class USACO {
         pasture[b][c] = s.charAt(c) + "";
       }
     }
-    for (int d = 0; d < 3; d++) {
+    for (int d = 0; d < 4; d++) {
       se[d] = Integer.parseInt(in.next());
     }
     for (int e = 0; e < pasture.length; e++) {
       for (int f = 0; f < pasture[0].length; f++) {
-        if (pasture[e][f] == ".") {
-	  pasture[e][f] = "0";
+        if (pasture[e][f].equals("*")) {
+	  pasture[e][f] = "-1";
         }
 	else {
-	  pasture[e][f] = "-1";
+	  pasture[e][f] = "0";
 	}
       }
     }
     for (int g = 0; g < i1[2] + 1; g++) {
       pasture = updatePasture(pasture, g, se[0] - 1, se[1] - 1);
     }
-    System.out.println(toStringS(pasture));
     return Integer.parseInt(pasture[se[2] - 1][se[3] - 1]);
   }
 
   public static String[][] updatePasture(String[][] arr, int time, int startR, int startC) {
     String[][] hold = new String[arr.length][arr[0].length];
     if ((time == 0) && (isValid(arr, startR, startC))) {
-      arr[startR][startC] = "1";
+      for (int e = 0; e < arr.length; e++) {
+        for (int f = 0; f < arr[0].length; f++) {
+          if (arr[e][f].equals("*")) {
+	    hold[e][f] = "-1";
+          }
+	  else {
+	    hold[e][f] = "0";
+	  }
+        }
+      }
+      hold[startR][startC] = "1";
     }
     else {
       for (int a = 0; a < arr.length; a++) {
         for (int b = 0; b < arr[0].length; b++) {
-          if (arr[a][b] != "0") {
+	  if (arr[a][b].equals("-1")) {
+	    hold[a][b] = "-1";
+	  }
+          else if (!arr[a][b].equals("0")) {
 	    hold[a][b] = "0";
           }
           else {
@@ -125,7 +137,7 @@ public class USACO {
   }
 
   public static boolean isValid(String[][] arr, int r, int c) {
-    if ((arr[r][c] == "-1") || (r >= arr.length) || (c >= arr[0].length) || (r < 0) || (c < 0)) {
+    if ((r >= arr.length) || (c >= arr[0].length) || (r < 0) || (c < 0) || (arr[r][c].equals("-1"))) {
       return false;
     }
     return true;
@@ -146,7 +158,7 @@ public class USACO {
     String s = "";
     for (int d = 0; d < arr.length; d++) {
       for (int e = 0; e < arr[0].length; e++) {
-	s += arr[d][e];
+	s += arr[d][e] + " ";
       }
       s += "\n";
     }
