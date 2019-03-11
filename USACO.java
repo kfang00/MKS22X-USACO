@@ -87,18 +87,41 @@ public class USACO {
       }
     }
     for (int g = 0; g < i1[2] + 1; g++) {
-      updatePasture(pasture, g, se[0] - 1, se[1] - 1);
+      pasture = updatePasture(pasture, g, se[0] - 1, se[1] - 1);
     }
     System.out.println(toStringS(pasture));
     return 0;
   }
 
-  public static void updatePasture(String[][] arr, int time, int startR, int startC) {
-    int[][] moves = {{0, -1},{0, 1},{1, 0},{-1, 0}};
-    if (time == 0) {
-      
+  public static String[][] updatePasture(String[][] arr, int time, int startR, int startC) {
+    String[][] hold = new String[arr.length][arr[0].length];
+    if ((time == 0) && (isValid(arr, startR, startC))) {
+      arr[startR][startC] = 1;
     }
+    else {
+      for (int a = 0; a < arr.length; a++) {
+        for (int b = 0; b < arr[0].length; b++) {
+          if (arr[a][b] != 0) {
+	    hold[a][b] = 0;
+          }
+          else {
+	    hold[a][b] = addFour(arr, a, b);
+          }
+        }
+      }
+    }
+    return hold;
+  }
 
+  public static int addFour(String[][] ar, int r, int c) {
+    int[][] moves = {{0, -1},{0, 1},{1, 0},{-1, 0}};
+    int sum = 0;
+    for (int a = 0; a < moves.length; a++) {
+      if (isValid(ar, r + moves[a][0], c + moves[a][1])) {
+	sum += ar[r + moves[a][0]][c + moves[a][1]];
+      }
+    }
+    return sum;
   }
 
   public static boolean isValid(String[][] arr, int r, int c) {
