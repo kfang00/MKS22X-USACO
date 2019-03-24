@@ -88,6 +88,7 @@ public class USACO {
     }
     for (int g = 0; g < i1[2] + 1; g++) {
       pasture = updatePasture(pasture, g, se[0] - 1, se[1] - 1);
+      //System.out.println(toStringS(pasture));
     }
     return Integer.parseInt(pasture[se[2] - 1][se[3] - 1]);
   }
@@ -97,7 +98,7 @@ public class USACO {
     if ((time == 0) && (isValid(arr, startR, startC))) {
       for (int e = 0; e < arr.length; e++) {
         for (int f = 0; f < arr[0].length; f++) {
-          if (arr[e][f].equals("*")) {
+          if (arr[e][f].equals("-1")) {
 	    hold[e][f] = "-1";
           }
 	  else {
